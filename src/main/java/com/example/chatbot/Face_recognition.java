@@ -49,7 +49,7 @@ import java.awt.*;
       private CascadeClassifier face_cascade;  
       // Create a constructor method  
       public processor(){  
-           face_cascade=new CascadeClassifier("haarcascade_frontalface_alt.xml");  
+           face_cascade=new CascadeClassifier("src/main/java/com/example/chatbot/haarcascade_frontalface_alt.xml");  
            if(face_cascade.empty())  
            {  
                 System.out.println("--(!)Error loading A\n");  
