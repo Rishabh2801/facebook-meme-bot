@@ -32,7 +32,7 @@ public class FacebookBotVerticle extends AbstractVerticle
     private String VERIFY_TOKEN;
     private String ACCESS_TOKEN;
     
-    CvHaarClassifierCascade classifier = new CvHaarClassifierCascade(cvLoad9("src/main/java/com/example/chatbot/haarcascade_frontalface_alt.xml"));
+    CvHaarClassifierCascade classifier = new CvHaarClassifierCascade(cvLoad("facebook-meme-bot/src/main/resources/haarcascade_frontalface_alt.xml"));
     @Override
     public void start() throws Exception 
     {
