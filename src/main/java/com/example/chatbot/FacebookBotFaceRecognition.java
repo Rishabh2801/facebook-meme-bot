@@ -26,7 +26,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.bytedeco.javacpp.Loader;
 import org.bytedeco.javacpp.opencv_core;
 
-public class FacebookBotVerticle extends AbstractVerticle 
+public class FacebookBotFaceRecognition extends AbstractVerticle 
 {
 
     private String VERIFY_TOKEN;
@@ -52,7 +52,7 @@ public class FacebookBotVerticle extends AbstractVerticle
     public static void main(String[] args) 
     {
         Vertx vertx = Vertx.vertx();
-        vertx.deployVerticle(new FacebookBotVerticle());
+        vertx.deployVerticle(new FacebookBotFaceRecognition());
     }
 
 
@@ -111,7 +111,7 @@ public class FacebookBotVerticle extends AbstractVerticle
                     } 
                     catch (MalformedURLException ex) 
                     {
-                        Logger.getLogger(FacebookBotVerticle.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(FacebookBotFaceRecognition.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     File file = null;
                     try 
@@ -120,7 +120,7 @@ public class FacebookBotVerticle extends AbstractVerticle
                     } 
                     catch (IOException ex) 
                     {
-                        Logger.getLogger(FacebookBotVerticle.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(FacebookBotFaceRecognition.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     try 
                     {
@@ -128,7 +128,7 @@ public class FacebookBotVerticle extends AbstractVerticle
                     }
                     catch (IOException ex) 
                     {
-                        Logger.getLogger(FacebookBotVerticle.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(FacebookBotFaceRecognition.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     opencv_core.Mat mat = imread(file.getAbsolutePath());
                     opencv_core.RectVector rectVector = new opencv_core.RectVector();
@@ -160,8 +160,7 @@ public class FacebookBotVerticle extends AbstractVerticle
                 client
                         .post(443, "graph.facebook.com", "/v2.6/me/messages/")
                         .addQueryParam("access_token", ACCESS_TOKEN)
-                        .sendJsonObject(JsonObject.mapFrom(messaging), ar -> 
-                        {
+                        .sendJsonObject(JsonObject.mapFrom(messaging), ar -> {
                             if (ar.succeeded()) 
                             {
                                 HttpResponse<Buffer> res = ar.result();
